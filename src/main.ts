@@ -64,24 +64,32 @@ function initMenuModal(): void {
   const closeBtn = document.getElementById('modal-close')
   const menuBtns = document.querySelectorAll('.menu-btn')
   const modalTitle = document.getElementById('modal-title')
+  const menuPdf = document.getElementById('menu-pdf') as HTMLIFrameElement
+  const menuDownload = document.getElementById('menu-download') as HTMLAnchorElement
 
-  const menuNames: Record<string, string> = {
-    food: 'Food Menu',
-    cocktails: 'Cocktails Menu',
-    alcohol: 'Alcohol Menu'
+  const menuConfig: Record<string, { title: string; pdf: string }> = {
+    food: { title: 'Меню блюд', pdf: 'src/assets/pdf/food-menu.pdf' },
+    cocktails: { title: 'Коктейли', pdf: 'src/assets/pdf/cocktails-menu.pdf' },
+    alcohol: { title: 'Алкоголь', pdf: 'src/assets/pdf/alcohol-menu.pdf' }
   }
 
   menuBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const menuType = btn.getAttribute('data-menu')
-      if (modalTitle && menuType) {
-        modalTitle.textContent = menuNames[menuType] || 'Menu'
+      if (menuType && modalTitle && menuPdf && menuDownload) {
+        const config = menuConfig[menuType]
+        modalTitle.textContent = config.title
+        menuPdf.src = config.pdf
+        menuDownload.href = config.pdf
       }
       modal?.classList.remove('hidden')
     })
   })
 
-  const closeModal = () => modal?.classList.add('hidden')
+  const closeModal = () => {
+    modal?.classList.add('hidden')
+    if (menuPdf) menuPdf.src = ''
+  }
 
   overlay?.addEventListener('click', closeModal)
   closeBtn?.addEventListener('click', closeModal)
