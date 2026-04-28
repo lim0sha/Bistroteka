@@ -68,9 +68,9 @@ function initMenuModal(): void {
   const menuDownload = document.getElementById('menu-download') as HTMLAnchorElement
 
   const menuConfig: Record<string, { title: string; pdf: string }> = {
-    food: { title: 'Меню блюд', pdf: 'src/assets/pdf/food-menu.pdf' },
-    cocktails: { title: 'Коктейли', pdf: 'src/assets/pdf/cocktails-menu.pdf' },
-    alcohol: { title: 'Алкоголь', pdf: 'src/assets/pdf/alcohol-menu.pdf' }
+    food: { title: 'Меню блюд', pdf: 'src/assets/files/menus/bistroteka_food_menu_2026.pdf' },
+    cocktails: { title: 'Коктейли', pdf: 'src/assets/files/menus/bistroteka_cocktail_menu_2026.pdf' },
+    alcohol: { title: 'Алкоголь', pdf: 'src/assets/files/menus/bistroteka_alcohol_menu_2026.pdf' }
   }
 
   menuBtns.forEach(btn => {
