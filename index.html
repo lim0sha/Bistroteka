@@ -12,6 +12,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="bg-bistro-bg text-bistro-text font-sans antialiased">
+  <!-- Page Loader -->
+  <div id="page-loader" class="fixed inset-0 z-[100] flex items-center justify-center bg-bistro-bg">
+    <div class="flex flex-col items-center gap-4">
+      <div class="loader-spinner"></div>
+      <p class="font-serif italic text-bistro-text/60 text-sm">Loading...</p>
+    </div>
+  </div>
+
   <!-- Header -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-bistro-bg/80 border-b border-bistro-green/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

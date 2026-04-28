@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations()
   initMenuModal()
   initHeaderScroll()
+
+  // Hide loader when everything is loaded
+  const loader = document.getElementById('page-loader')
+  if (loader) {
+    loader.classList.add('fade-out')
+    setTimeout(() => {
+      loader.style.display = 'none'
+    }, 500)
+  }
 })
 
 function initMobileMenu(): void {

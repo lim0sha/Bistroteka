@@ -52,4 +52,27 @@
     transform: translateY(-0.5px);
     transition: transform 0.2s;
   }
+  
+  /* Page loader */
+  #page-loader {
+    transition: opacity 0.5s ease-out;
+  }
+  
+  #page-loader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .loader-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(227, 220, 199, 0.2);
+    border-top-color: #E3DCC7;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
 }
