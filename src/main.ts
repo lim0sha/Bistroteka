@@ -14,12 +14,20 @@ function initMobileMenu(): void {
   const links = menu?.querySelectorAll('.mobile-link')
 
   btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden')
+    const isOpen = menu?.classList.contains('opacity-100')
+    if (isOpen) {
+      menu?.classList.remove('opacity-100', 'pointer-events-auto')
+      menu?.classList.add('pointer-events-none')
+    } else {
+      menu?.classList.add('opacity-100', 'pointer-events-auto')
+      menu?.classList.remove('pointer-events-none')
+    }
   })
 
   links?.forEach(link => {
     link.addEventListener('click', () => {
-      menu?.classList.add('hidden')
+      menu?.classList.remove('opacity-100', 'pointer-events-auto')
+      menu?.classList.add('pointer-events-none')
     })
   })
 }
