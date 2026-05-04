@@ -31,38 +31,82 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  
+
+  /* Fallback for backdrop-filter (Safari < 9, old browsers) */
+  @supports not (backdrop-filter: blur(1px)) {
+    #header,
+    #mobile-menu,
+    #menu-modal > div:first-child {
+      background-color: rgba(10, 10, 10, 0.95) !important;
+    }
+  }
+
+  /* Fallback for aspect-ratio (IE, old Safari/FF) */
+  @supports not (aspect-ratio: 1 / 1) {
+    .aspect-square {
+      position: relative;
+      padding-top: 100%;
+    }
+    .aspect-square > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .aspect-\[4\/5\] {
+      position: relative;
+      padding-top: 125%;
+    }
+    .aspect-\[4\/5\] > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /* Fallback for scroll-behavior: smooth */
+  @supports not (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   /* Very subtle swipe hint for mobile carousel */
   @keyframes swipeHint {
     0%, 100% { transform: translateX(0); }
     30% { transform: translateX(10px); }
     60% { transform: translateX(0); }
   }
-  
+
   .swipe-hint {
     animation: swipeHint 2s ease-in-out 1.5s 2;
   }
-  
+
   /* Subtle hover effects */
   .menu-btn:hover {
     transform: translateY(-0.5px);
     transition: transform 0.2s;
   }
-  
+
   /* Page loader */
   #page-loader {
     transition: opacity 0.5s ease-out;
   }
-  
+
   #page-loader.fade-out {
     opacity: 0;
     pointer-events: none;
   }
-  
+
   .loader-spinner {
     width: 48px;
     height: 48px;
@@ -71,7 +115,7 @@
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
-  
+
   @keyframes spin {
     to { transform: rotate(360deg); }
   }
