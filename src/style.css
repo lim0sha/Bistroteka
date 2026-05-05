@@ -24,6 +24,11 @@
   .reveal-visible {
     @apply opacity-100 translate-y-0;
   }
+  
+  /* Mobile menu - smooth fade only */
+  #mobile-menu {
+    @apply transition-opacity duration-300 ease-in-out;
+  }
 }
 
 @layer utilities {
@@ -31,82 +36,81 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
+  
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-
-  /* Fallback for backdrop-filter (Safari < 9, old browsers) */
-  @supports not (backdrop-filter: blur(1px)) {
-    #header,
-    #mobile-menu,
-    #menu-modal > div:first-child {
-      background-color: rgba(10, 10, 10, 0.95) !important;
-    }
-  }
-
-  /* Fallback for aspect-ratio (IE, old Safari/FF) */
-  @supports not (aspect-ratio: 1 / 1) {
-    .aspect-square {
-      position: relative;
-      padding-top: 100%;
-    }
-    .aspect-square > * {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .aspect-\[4\/5\] {
-      position: relative;
-      padding-top: 125%;
-    }
-    .aspect-\[4\/5\] > * {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  /* Fallback for scroll-behavior: smooth */
-  @supports not (scroll-behavior: smooth) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-
+  
   /* Very subtle swipe hint for mobile carousel */
   @keyframes swipeHint {
     0%, 100% { transform: translateX(0); }
     30% { transform: translateX(10px); }
     60% { transform: translateX(0); }
   }
-
+  
   .swipe-hint {
     animation: swipeHint 2s ease-in-out 1.5s 2;
   }
-
-  /* Subtle hover effects */
-  .menu-btn:hover {
-    transform: translateY(-0.5px);
-    transition: transform 0.2s;
+  
+  /* Merch flip cards */
+  .merch-card {
+    @apply aspect-square relative;
+    perspective: 1000px;
   }
-
+  
+  .merch-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .merch-card.flipped .merch-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .merch-card-front,
+  .merch-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+  
+  .merch-card:hover .merch-card-front,
+  .merch-card:hover .merch-card-back {
+    border-color: theme('colors.bistro-red-bright');
+  }
+  
+  .merch-card-back {
+    transform: rotateY(180deg);
+  }
+  
+  .merch-card-front img,
+  .merch-card-back img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+  
+  .merch-card:hover .merch-card-front img,
+  .merch-card:hover .merch-card-back img {
+    transform: scale(1.05);
+  }
+  
   /* Page loader */
   #page-loader {
     transition: opacity 0.5s ease-out;
   }
-
+  
   #page-loader.fade-out {
     opacity: 0;
     pointer-events: none;
   }
-
+  
   .loader-spinner {
     width: 48px;
     height: 48px;
@@ -115,8 +119,14 @@
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
-
+  
   @keyframes spin {
     to { transform: rotate(360deg); }
+  }
+  
+  /* Subtle hover effects */
+  .menu-btn:hover {
+    transform: translateY(-0.5px);
+    transition: transform 0.2s;
   }
 }

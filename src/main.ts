@@ -1,37 +1,12 @@
 import './style.css'
 
-// Polyfill for IntersectionObserver (Safari < 12.1, IE, older Chrome/FF)
-if (!('IntersectionObserver' in window)) {
-  class IntersectionObserverPolyfill {
-    private callback: IntersectionObserverCallback
-    constructor(callback: IntersectionObserverCallback) {
-      this.callback = callback
-    }
-    observe(target: Element) {
-      const handler = () => {
-        this.callback(
-          [{ isIntersecting: true, target, intersectionRatio: 1 } as IntersectionObserverEntry],
-          this as unknown as IntersectionObserver
-        )
-      }
-      if ('MutationObserver' in window) {
-        new MutationObserver(handler).observe(target, { attributes: true, childList: true })
-      }
-      window.addEventListener('scroll', handler, { passive: true })
-      handler()
-    }
-    unobserve() {}
-    disconnect() {}
-  }
-  ;(window as any).IntersectionObserver = IntersectionObserverPolyfill
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu()
   initSmoothScroll()
   initScrollAnimations()
   initMenuModal()
   initHeaderScroll()
+  initMerchFlip()
 
   // Hide loader when everything is loaded
   const loader = document.getElementById('page-loader')
@@ -42,6 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500)
   }
 })
+
+function initMerchFlip(): void {
+  const cards = document.querySelectorAll('.merch-card')
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped')
+    })
+  })
+}
 
 function initMobileMenu(): void {
   const btn = document.getElementById('mobile-menu-btn')
@@ -68,22 +52,15 @@ function initMobileMenu(): void {
 }
 
 function initSmoothScroll(): void {
-  const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style
-
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault()
       const href = anchor.getAttribute('href')
       if (!href) return
-
+      
       const target = document.querySelector(href)
       if (target) {
-        if (supportsSmoothScroll) {
-          target.scrollIntoView({ behavior: 'smooth' })
-        } else {
-          // Fallback: instant scroll for older browsers
-          target.scrollIntoView()
-        }
+        target.scrollIntoView({ behavior: 'smooth' })
       }
     })
   })
