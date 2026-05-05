@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations()
   initMenuModal()
   initHeaderScroll()
+  initMerchFlip()
 
   // Hide loader when everything is loaded
   const loader = document.getElementById('page-loader')
@@ -16,6 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500)
   }
 })
+
+function initMerchFlip(): void {
+  const cards = document.querySelectorAll('.merch-card')
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped')
+    })
+  })
+}
 
 function initMobileMenu(): void {
   const btn = document.getElementById('mobile-menu-btn')
