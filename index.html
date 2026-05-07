@@ -411,6 +411,29 @@
     </div>
   </footer>
 
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="hidden fixed bottom-0 left-0 w-full bg-bistro-bg border-t border-bistro-green/20 text-bistro-text text-sm text-center py-4 px-4 z-[9999]">
+    <p class="mb-3">
+      Мы используем файлы cookie, чтобы анализировать трафик сайта и персонализировать контент.
+      <a href="/cookie-policy.html" class="text-bistro-red hover:underline">Подробнее</a>.
+    </p>
+    <button id="accept-cookies" class="bg-bistro-red hover:bg-bistro-red/80 text-bistro-text px-6 py-2 rounded-lg transition-all">
+      Принять
+    </button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!localStorage.getItem('cookieConsent')) {
+        document.getElementById('cookie-banner').classList.remove('hidden')
+      }
+      document.getElementById('accept-cookies').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'true')
+        document.getElementById('cookie-banner').classList.add('hidden')
+      })
+    })
+  </script>
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
