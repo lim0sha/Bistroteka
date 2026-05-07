@@ -185,7 +185,7 @@
   <section id="contact" class="py-20 lg:py-32 px-4">
     <div class="max-w-7xl mx-auto">
       <h2 class="font-serif text-4xl lg:text-5xl text-center mb-12">Связаться с нами</h2>
-      <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <div class="flex flex-wrap justify-center gap-4 mb-4">
         <a href="tel:+79310062536" class="flex items-center gap-2 px-6 py-3 bg-bistro-green hover:bg-bistro-green/80 text-bistro-text rounded-lg transition-all">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -201,8 +201,14 @@
       </div>
       
       <!-- CRM Integration Placeholder -->
-      <div class="max-w-2xl mx-auto p-6 border border-bistro-green/30 rounded-lg bg-bistro-bg/30">
-        <p class="text-center text-bistro-text/50">[Здесь будет iframe CRM системы бронирования]</p>
+      <div class="mx-auto rounded-lg bg-bistro-bg/30">
+        <link rel="stylesheet" href="https://remarked.ru/widget/new/css/stylesheet.css">
+        <div class="text-center text-bistro-text/50">
+          <a href="#openReMarkedWidget" class="open__primary__widget inline-flex items-center justify-center px-4 py-3 bg-bistro-red hover:bg-bistro-red/80 text-bistro-text rounded-lg transition-all">Забронировать столик</a>
+          <link rel="stylesheet" href="https://remarked.ru/widget/new/points/670601/670601.css">
+          <script src="https://remarked.ru/widget/new/js/newidget.js"></script>
+          <script src="https://remarked.ru/widget/new/points/670601/config.670601.js"></script>
+        </div>
       </div>
     </div>
   </section>
@@ -404,6 +410,29 @@
       <p class="text-center text-bistro-text/50 text-sm">&copy; 2026 Bistroteka. Все права защищены.</p>
     </div>
   </footer>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="hidden fixed bottom-0 left-0 w-full bg-bistro-bg border-t border-bistro-green/20 text-bistro-text text-sm text-center py-4 px-4 z-[9999]">
+    <p class="mb-3">
+      Мы используем файлы cookie, чтобы анализировать трафик сайта и персонализировать контент.
+      <a href="/cookie-policy.html" class="text-bistro-red hover:underline">Подробнее</a>.
+    </p>
+    <button id="accept-cookies" class="bg-bistro-red hover:bg-bistro-red/80 text-bistro-text px-6 py-2 rounded-lg transition-all">
+      Принять
+    </button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!localStorage.getItem('cookieConsent')) {
+        document.getElementById('cookie-banner').classList.remove('hidden')
+      }
+      document.getElementById('accept-cookies').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'true')
+        document.getElementById('cookie-banner').classList.add('hidden')
+      })
+    })
+  </script>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
