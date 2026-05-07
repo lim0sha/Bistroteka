@@ -1,8 +1,20 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: './',
+  base: '/',
   build: {
     outDir: 'dist',
   },
+  plugins: [
+    {
+      name: 'remove-crossorigin',
+      transformIndexHtml: {
+        enforce: 'post',
+        transform(html: string) {
+          return html.replace(/(<script[^>]*) crossorigin/g, '$1')
+                   .replace(/(<link[^>]*rel="stylesheet"[^>]*) crossorigin/g, '$1')
+        }
+      }
+    }
+  ],
 })
