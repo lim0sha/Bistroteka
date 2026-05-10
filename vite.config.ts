@@ -9,8 +9,8 @@ export default defineConfig({
     {
       name: 'remove-crossorigin',
       transformIndexHtml: {
-        enforce: 'post',
-        transform(html: string) {
+        order: 'post',
+        handler(html: string) {
           return html.replace(/(<script[^>]*) crossorigin/g, '$1')
                    .replace(/(<link[^>]*rel="stylesheet"[^>]*) crossorigin/g, '$1')
         }

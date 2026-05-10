@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMenuModal()
   initHeaderScroll()
   initMerchFlip()
+  initCocktailCarousels()
 
   // Hide loader when everything is loaded
   const loader = document.getElementById('page-loader')
@@ -141,5 +142,66 @@ function initHeaderScroll(): void {
         header.classList.add('bg-bistro-bg/80')
       }
     }
+  })
+}
+
+function initCocktailCarousels(): void {
+  const ids = ['cocktail-carousel-1', 'cocktail-carousel-2']
+  const directions = [1, -1]
+
+  ids.forEach((id, i) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    const carousel: HTMLElement = el
+
+    const children = Array.from(carousel.children)
+    children.forEach(child => {
+      const clone = child.cloneNode(true) as HTMLElement
+      carousel.appendChild(clone)
+    })
+
+    const dir = directions[i]
+    const speed = 0.4
+    let isPaused = false
+    let pauseTimeout: number | null = null
+
+    carousel.scrollLeft = dir === -1 ? carousel.scrollWidth / 2 : 0
+    carousel.style.overflowX = 'hidden'
+
+    const pause = () => {
+      isPaused = true
+      carousel.style.overflowX = ''
+      if (pauseTimeout !== null) {
+        clearTimeout(pauseTimeout)
+        pauseTimeout = null
+      }
+    }
+
+    const resume = () => {
+      pauseTimeout = window.setTimeout(() => {
+        isPaused = false
+        carousel.style.overflowX = 'hidden'
+        pauseTimeout = null
+      }, 300)
+    }
+
+    carousel.addEventListener('touchstart', pause, { passive: true })
+    carousel.addEventListener('touchend', resume, { passive: true })
+    carousel.addEventListener('touchcancel', resume, { passive: true })
+
+    function tick() {
+      if (!isPaused) {
+        carousel.scrollLeft += speed * dir
+        const half = carousel.scrollWidth / 2
+        if (dir === 1 && carousel.scrollLeft >= half) {
+          carousel.scrollLeft = 0
+        } else if (dir === -1 && carousel.scrollLeft <= 0) {
+          carousel.scrollLeft = half
+        }
+      }
+      requestAnimationFrame(tick)
+    }
+
+    requestAnimationFrame(tick)
   })
 }
