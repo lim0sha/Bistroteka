@@ -110,6 +110,7 @@
     </div>
   </header>
 
+  <main>
   <!-- Hero Section -->
   <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('src/assets/images/interior/bistroteka-interiors-1.jpg')">
@@ -515,6 +516,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
   <footer class="py-12 px-4 bg-bistro-green">
@@ -584,13 +586,15 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      if (!localStorage.getItem('cookieConsent')) {
-        document.getElementById('cookie-banner').classList.remove('hidden')
-      }
-      document.getElementById('accept-cookies').addEventListener('click', function() {
-        localStorage.setItem('cookieConsent', 'true')
-        document.getElementById('cookie-banner').classList.add('hidden')
-      })
+      try {
+        if (!localStorage.getItem('cookieConsent')) {
+          document.getElementById('cookie-banner').classList.remove('hidden')
+        }
+        document.getElementById('accept-cookies').addEventListener('click', function() {
+          localStorage.setItem('cookieConsent', 'true')
+          document.getElementById('cookie-banner').classList.add('hidden')
+        })
+      } catch (e) {}
     })
   </script>
 
