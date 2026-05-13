@@ -12,47 +12,105 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="canonical" href="https://bistroteka.ru/cookie-policy.html">
   <meta name="robots" content="index, follow">
-  <script defer src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'bistro-bg': '#0a0a0a',
-            'bistro-text': '#E3DCC7',
-            'bistro-green': '#0C5C3E',
-            'bistro-red': '#CF0000',
-            'bistro-red-dark': '#5D161A',
-            'bistro-red-bright': '#CB1B3A',
-          },
-            fontFamily: {
-            'serif': ['"Cormorant Garamond"', 'serif'],
-            'sans': ['Inter', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
   <style>
-    body { background-color: #0a0a0a; color: #E3DCC7; }
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; border-bottom: 1px solid rgba(12,92,62,0.2); background-color: rgba(10,10,10,0.8); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
-    header a { display: inline-flex; align-items: center; gap: 0.5rem; color: rgba(227,220,199,0.6); text-decoration: none; transition: color 0.2s; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #0a0a0a;
+      color: #E3DCC7;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(12,92,62,0.2);
+      background-color: rgba(10,10,10,0.8);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+
+    header a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(227,220,199,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
     header a:hover { color: #E3DCC7; }
-    header svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; }
+
+    header svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: none;
+      stroke: currentColor;
+    }
+
+    .max-w-4xl { max-width: 56rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .pt-24 { padding-top: 6rem; }
+    .pb-12 { padding-bottom: 3rem; }
+    .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+    .inline-flex { display: inline-flex; }
+    .items-center { align-items: center; }
+    .gap-2 { gap: 0.5rem; }
+    .transition-colors { transition: color 0.2s; }
+    .font-serif { font-family: 'Cormorant Garamond', serif; }
+    .font-sans { font-family: 'Inter', sans-serif; }
+    .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .font-bold { font-weight: 700; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mt-10 { margin-top: 2.5rem; }
+    .text-center { text-align: center; }
+
+    @media (min-width: 640px) {
+      .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+    }
+
     .policy-content h1, .policy-content h2, .policy-content h3 {
       font-family: 'Cormorant Garamond', serif;
     }
+
     .policy-content p, .policy-content li {
       font-family: 'Inter', sans-serif;
       line-height: 1.7;
     }
-    .policy-content a {
-      color: #CB1B3A;
-      text-decoration: underline;
-    }
-    .policy-content a:hover {
-      opacity: 0.8;
-    }
+
+    .policy-content a { color: #CB1B3A; text-decoration: underline; }
+    .policy-content a:hover { opacity: 0.8; }
+
+    footer { border-top: 1px solid rgba(12,92,62,0.2); }
+    footer .text-sm { color: rgba(227,220,199,0.5); }
+
+    /* Cookie-policy specific */
+    .list-disc { list-style-type: disc; }
+    .pl-6 { padding-left: 1.5rem; }
+    .space-y-2 > * + * { margin-top: 0.5rem; }
+    .overflow-x-auto { overflow-x: auto; }
+    .w-full { width: 100%; }
+    .border-collapse { border-collapse: collapse; }
+    .border { border-width: 1px; border-style: solid; }
+    .border-bistro-green\/30 { border-color: rgba(12,92,62,0.3); }
+    .bg-bistro-green\/20 { background-color: rgba(12,92,62,0.2); }
+    .p-3 { padding: 0.75rem; }
+    .text-left { text-align: left; }
   </style>
 </head>
 <body class="bg-bistro-bg text-bistro-text font-sans antialiased">
