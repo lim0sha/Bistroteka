@@ -3,15 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bistroteka | eat drink disappear</title>
-  <meta name="description" content="Bistroteka - Sophisticated cocktail bar and restaurant">
+  <title>Bistroteka | Бар и ресторан в Санкт-Петербурге</title>
+  <meta name="description" content="Bistroteka — бар и ресторан в центре Санкт-Петербурга. Авторские коктейли, европейская и фьюжн-кухня, атмосферные интерьеры на наб. реки Карповки. Забронировать столик.">
+  <link rel="canonical" href="https://bistroteka.ru/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bistroteka | Бар и ресторан в Санкт-Петербурге">
+  <meta property="og:description" content="Авторские коктейли, европейская и фьюжн-кухня, атмосферные интерьеры. Санкт-Петербург, наб. реки Карповки, 31.">
+  <meta property="og:url" content="https://bistroteka.ru/">
+  <meta property="og:image" content="https://bistroteka.ru/src/assets/images/hero/bistroteka-hero-section.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Bistroteka">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bistroteka | Бар и ресторан в Санкт-Петербурге">
+  <meta name="twitter:description" content="Авторские коктейли, европейская и фьюжн-кухня, атмосферные интерьеры. Санкт-Петербург, наб. реки Карповки, 31.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="src/assets/images/merch/tshirt-back.jpg">
-  <link rel="preload" as="image" href="src/assets/images/merch/longsleeve-back.jpg">
+
+  <link rel="preload" as="image" href="src/assets/images/hero/bistroteka-hero-section.jpg">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Restaurant", "Bar"],
+    "name": "Bistroteka",
+    "description": "Бар и ресторан в Санкт-Петербурге. Авторские коктейли, европейская и фьюжн-кухня.",
+    "image": "https://bistroteka.ru/src/assets/images/hero/bistroteka-hero-section.jpg",
+    "url": "https://bistroteka.ru/",
+    "telephone": "+79310062536",
+    "email": "meetbistroteka@mail.ru",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "наб. реки Карповки, 31, корп. 1",
+      "addressLocality": "Санкт-Петербург",
+      "addressCountry": "RU"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "12:00",
+      "closes": "23:00"
+    }],
+    "sameAs": [
+      "https://www.instagram.com/meet_bistroteka",
+      "https://t.me/meetbistroteka"
+    ],
+    "servesCuisine": ["European", "Russian", "Fusion"],
+    "priceRange": "₽₽₽"
+  }
+  </script>
 </head>
 <body class="bg-bistro-bg text-bistro-text font-sans antialiased">
   <!-- Page Loader -->
@@ -27,7 +75,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         <!-- Logo -->
-        <a href="#" class="flex items-center gap-3">
+        <a href="./index.html" class="flex items-center gap-3">
           <img src="src/assets/images/logos/logo_bistroteka.svg" alt="Bistroteka" class="h-8 md:h-10 w-auto">
           <span class="font-serif italic text-xs text-bistro-text/60 hidden sm:block">eat drink disappear</span>
         </a>
@@ -95,7 +143,7 @@
         </div>
         <div class="reveal-hidden relative">
           <div class="aspect-square rounded-full overflow-hidden border-2 border-bistro-green/30">
-            <img src="src/assets/images/hero/bistroteka-hero-section.jpg" alt="Bistroteka atmosphere" class="w-full h-full object-cover">
+            <img src="src/assets/images/hero/bistroteka-hero-section.jpg" alt="Интерьер бара Bistroteka в Санкт-Петербурге" class="w-full h-full object-cover" loading="lazy">
           </div>
         </div>
       </div>
@@ -108,22 +156,22 @@
       <h2 class="font-serif text-4xl lg:text-5xl text-center mb-12">Коктейли</h2>
 
       <div class="hidden lg:grid grid-cols-8 gap-4">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-1.jpg" alt="Cocktail 1" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-2.jpg" alt="Cocktail 2" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-3.jpg" alt="Cocktail 3" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-4.jpg" alt="Cocktail 4" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-5.jpg" alt="Cocktail 5" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-6.jpg" alt="Cocktail 6" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-7.jpg" alt="Cocktail 7" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-8.jpg" alt="Cocktail 8" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-9.jpg" alt="Cocktail 9" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-10.jpg" alt="Cocktail 10" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-11.jpg" alt="Cocktail 11" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-12.jpg" alt="Cocktail 12" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-13.jpg" alt="Cocktail 13" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-14.jpg" alt="Cocktail 14" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-15.jpg" alt="Cocktail 15" class="aspect-square object-cover rounded-lg w-full">
-        <img src="src/assets/images/cocktails/bistroteka-cocktails-16.jpg" alt="Cocktail 16" class="aspect-square object-cover rounded-lg w-full">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-1.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-2.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-3.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-4.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-5.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-6.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-7.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-8.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-9.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-10.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-11.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-12.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-13.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-14.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-15.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
+        <img src="src/assets/images/cocktails/bistroteka-cocktails-16.jpg" alt="Авторский коктейль Bistroteka" class="aspect-square object-cover rounded-lg w-full" loading="lazy">
       </div>
 
       <div id="cocktail-carousel-1" class="flex overflow-x-auto gap-4 pb-4 scrollbar-hide lg:hidden mb-4">
@@ -342,10 +390,10 @@
           <div class="merch-card" data-merch="football">
             <div class="merch-card-inner">
               <div class="merch-card-front">
-                <img src="src/assets/images/merch/tshirt-front.jpg" alt="Football Jersey Front" class="w-full h-full object-cover">
+                <img src="src/assets/images/merch/tshirt-front.jpg" alt="Футболка Bistroteka — перед" class="w-full h-full object-cover" loading="lazy">
               </div>
               <div class="merch-card-back">
-                <img src="src/assets/images/merch/tshirt-back.jpg" alt="Football Jersey Back" class="w-full h-full object-cover">
+                <img src="src/assets/images/merch/tshirt-back.jpg" alt="Футболка Bistroteka — спина" class="w-full h-full object-cover" loading="lazy">
               </div>
             </div>
           </div>
@@ -358,10 +406,10 @@
           <div class="merch-card" data-merch="longsleeve">
             <div class="merch-card-inner">
               <div class="merch-card-front">
-                <img src="src/assets/images/merch/longsleeve-front.jpg" alt="Longsleeve Front" class="w-full h-full object-cover">
+                <img src="src/assets/images/merch/longsleeve-front.jpg" alt="Лонгслив Bistroteka — перед" class="w-full h-full object-cover" loading="lazy">
               </div>
               <div class="merch-card-back">
-                <img src="src/assets/images/merch/longsleeve-back.jpg" alt="Longsleeve Back" class="w-full h-full object-cover">
+                <img src="src/assets/images/merch/longsleeve-back.jpg" alt="Лонгслив Bistroteka — спина" class="w-full h-full object-cover" loading="lazy">
               </div>
             </div>
           </div>
@@ -372,7 +420,7 @@
         <!-- Cap - static -->
         <div class="group reveal-hidden" style="animation-delay: 0.3s;">
           <div class="aspect-square rounded-full overflow-hidden border-2 border-transparent group-hover:border-bistro-red-bright transition-all duration-300 bg-bistro-green/10">
-            <img src="src/assets/images/merch/cap.png" alt="Cap" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <img src="src/assets/images/merch/cap.png" alt="Кепка Bistroteka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
           </div>
           <h3 class="font-serif text-xl text-center mb-1 mt-4">Кепка Bistroteka</h3>
           <p class="text-bistro-text/60 text-sm text-center">₽2,500</p>
@@ -388,22 +436,22 @@
       <h2 class="font-serif text-4xl lg:text-5xl text-center mb-12">Интерьер и атмосфера</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div class="aspect-[4/5] reveal-hidden">
-          <img src="src/assets/images/interior/bistroteka-interiors-1.jpg" alt="Interior 1" class="w-full h-full object-cover rounded-lg">
+          <img src="src/assets/images/interior/bistroteka-interiors-1.jpg" alt="Интерьер ресторана Bistroteka" class="w-full h-full object-cover rounded-lg" loading="lazy">
         </div>
         <div class="aspect-[4/5] reveal-hidden" style="animation-delay: 0.1s;">
-          <img src="src/assets/images/interior/bistroteka-interiors-2.jpg" alt="Interior 2" class="w-full h-full object-cover rounded-lg">
+          <img src="src/assets/images/interior/bistroteka-interiors-2.jpg" alt="Интерьер ресторана Bistroteka" class="w-full h-full object-cover rounded-lg" loading="lazy">
         </div>
         <div class="aspect-[4/5] reveal-hidden hidden md:block" style="animation-delay: 0.2s;">
-          <img src="src/assets/images/interior/bistroteka-interiors-3.jpg" alt="Interior 3" class="w-full h-full object-cover rounded-lg">
+          <img src="src/assets/images/interior/bistroteka-interiors-3.jpg" alt="Интерьер ресторана Bistroteka" class="w-full h-full object-cover rounded-lg" loading="lazy">
         </div>
         <div class="aspect-[4/5] reveal-hidden">
-          <img src="src/assets/images/interior/bistroteka-interiors-4.jpg" alt="Interior 4" class="w-full h-full object-cover rounded-lg">
+          <img src="src/assets/images/interior/bistroteka-interiors-4.jpg" alt="Интерьер ресторана Bistroteka" class="w-full h-full object-cover rounded-lg" loading="lazy">
         </div>
         <div class="aspect-[4/5] reveal-hidden" style="animation-delay: 0.1s;">
-          <img src="src/assets/images/interior/bistroteka-interiors-5.jpg" alt="Interior 5" class="w-full h-full object-cover rounded-lg">
+          <img src="src/assets/images/interior/bistroteka-interiors-5.jpg" alt="Интерьер ресторана Bistroteka" class="w-full h-full object-cover rounded-lg" loading="lazy">
         </div>
         <div class="aspect-[4/5] reveal-hidden hidden md:block" style="animation-delay: 0.2s;">
-          <img src="src/assets/images/interior/bistroteka-interiors-6.jpg" alt="Interior 6" class="w-full h-full object-cover rounded-lg">
+          <img src="src/assets/images/interior/bistroteka-interiors-6.jpg" alt="Интерьер ресторана Bistroteka" class="w-full h-full object-cover rounded-lg" loading="lazy">
         </div>
       </div>
     </div>
@@ -417,21 +465,21 @@
       <div class="grid sm:grid-cols-3 gap-8 mb-8">
         <div class="reveal-hidden text-center">
           <div class="aspect-square rounded-full overflow-hidden mb-4 border-2 border-bistro-green/30 mx-auto max-w-xs">
-            <img src="src/assets/images/team/bistroteka-people-5.jpg" alt="Team member" class="w-full h-full object-cover">
+            <img src="src/assets/images/team/bistroteka-people-5.jpg" alt="Дарья Аликина — владелица Bistroteka" class="w-full h-full object-cover" loading="lazy">
           </div>
           <h3 class="font-serif text-xl mb-1">Дарья Аликина</h3>
           <p class="text-bistro-text/60 text-sm">Владелица, сооснователь</p>
         </div>
         <div class="reveal-hidden text-center" style="animation-delay: 0.1s;">
           <div class="aspect-square rounded-full overflow-hidden mb-4 border-2 border-bistro-green/30 mx-auto max-w-xs">
-            <img src="src/assets/images/team/bistroteka-people-2.jpg" alt="Team member" class="w-full h-full object-cover">
+            <img src="src/assets/images/team/bistroteka-people-2.jpg" alt="Алексей Миронов — креативный директор Bistroteka" class="w-full h-full object-cover" loading="lazy">
           </div>
           <h3 class="font-serif text-xl mb-1">Алексей Миронов</h3>
           <p class="text-bistro-text/60 text-sm">Креативный директор</p>
         </div>
         <div class="reveal-hidden text-center" style="animation-delay: 0.2s;">
           <div class="aspect-square rounded-full overflow-hidden mb-4 border-2 border-bistro-green/30 mx-auto max-w-xs">
-            <img src="src/assets/images/team/bistroteka-people-4.jpg" alt="Team member" class="w-full h-full object-cover">
+            <img src="src/assets/images/team/bistroteka-people-4.jpg" alt="Даниил Золотухин — управляющий Bistroteka" class="w-full h-full object-cover" loading="lazy">
           </div>
           <h3 class="font-serif text-xl mb-1">Даниил Золотухин</h3>
           <p class="text-bistro-text/60 text-sm">Управляющий</p>
@@ -441,14 +489,14 @@
       <div class="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
         <div class="reveal-hidden text-center" style="animation-delay: 0.3s;">
           <div class="aspect-square rounded-full overflow-hidden mb-4 border-2 border-bistro-green/30 mx-auto max-w-xs">
-            <img src="src/assets/images/team/bistroteka-people-3.jpg" alt="Team member" class="w-full h-full object-cover">
+            <img src="src/assets/images/team/bistroteka-people-3.jpg" alt="Дмитрий Гукасян — шеф-бартендер Bistroteka" class="w-full h-full object-cover" loading="lazy">
           </div>
           <h3 class="font-serif text-xl mb-1">Дмитрий Гукасян</h3>
           <p class="text-bistro-text/60 text-sm">Шеф-бартендер</p>
         </div>
         <div class="reveal-hidden text-center" style="animation-delay: 0.4s;">
           <div class="aspect-square rounded-full overflow-hidden mb-4 border-2 border-bistro-green/30 mx-auto max-w-xs">
-            <img src="src/assets/images/team/bistroteka-people-1.jpg" alt="Team member" class="w-full h-full object-cover">
+            <img src="src/assets/images/team/bistroteka-people-1.jpg" alt="Руслан Моисеев — бар-менеджер Bistroteka" class="w-full h-full object-cover" loading="lazy">
           </div>
           <h3 class="font-serif text-xl mb-1">Руслан Моисеев</h3>
           <p class="text-bistro-text/60 text-sm">Бар-менеджер</p>
