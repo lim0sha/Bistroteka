@@ -159,26 +159,29 @@ function initCocktailCarousels(): void {
     const track = document.createElement('div')
     track.className = 'flex gap-4'
     track.style.willChange = 'transform'
+    track.style.userSelect = 'none'
 
     const itemGap = 16
     const itemWidth = children[0].getBoundingClientRect().width
     const step = itemWidth + itemGap
     const total = step * children.length
 
-    children.forEach(child => {
-      track.appendChild(child)
-      track.appendChild(child.cloneNode(true))
-    })
+    children.forEach(child => track.appendChild(child))
+    children.forEach(child => track.appendChild(child.cloneNode(true)))
 
     el.textContent = ''
     el.appendChild(track)
     el.style.overflow = 'hidden'
+    el.style.touchAction = 'pan-y'
 
     const dir = directions[i]
     const speed = 0.4
     let isPaused = false
     let pauseTimeout: number | null = null
     let pos = dir === -1 ? total : 0
+    let isDragging = false
+    let dragStartX = 0
+    let dragStartPos = 0
 
     track.style.transform = `translateX(${-pos}px)`
 
@@ -197,12 +200,45 @@ function initCocktailCarousels(): void {
       }, 300)
     }
 
-    el.addEventListener('touchstart', pause, { passive: true })
-    el.addEventListener('touchend', resume, { passive: true })
-    el.addEventListener('touchcancel', resume, { passive: true })
+    const maxPos = total * 2
+
+    const onDragStart = (clientX: number) => {
+      pause()
+      isDragging = true
+      dragStartX = clientX
+      dragStartPos = pos
+    }
+
+    const onDragMove = (clientX: number) => {
+      if (!isDragging) return
+      pos = Math.max(0, Math.min(maxPos, dragStartPos + (dragStartX - clientX)))
+      track.style.transform = `translateX(${-pos}px)`
+    }
+
+    const onDragEnd = () => {
+      if (!isDragging) return
+      isDragging = false
+      if (pos > total) {
+        pos -= total
+      } else if (pos < 0) {
+        pos = 0
+      }
+      track.style.transform = `translateX(${-pos}px)`
+      resume()
+    }
+
+    el.addEventListener('touchstart', e => onDragStart(e.touches[0].clientX), { passive: true })
+    el.addEventListener('touchmove', e => onDragMove(e.touches[0].clientX), { passive: true })
+    el.addEventListener('touchend', onDragEnd, { passive: true })
+    el.addEventListener('touchcancel', onDragEnd, { passive: true })
+
+    el.addEventListener('mousedown', e => onDragStart(e.clientX))
+    el.addEventListener('mousemove', e => { e.preventDefault(); onDragMove(e.clientX) })
+    el.addEventListener('mouseup', onDragEnd)
+    el.addEventListener('mouseleave', onDragEnd)
 
     function tick() {
-      if (!isPaused) {
+      if (!isPaused && !isDragging) {
         pos += speed * dir
         if (dir === 1 && pos >= total) {
           pos = 0
