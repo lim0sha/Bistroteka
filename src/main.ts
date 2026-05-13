@@ -152,20 +152,35 @@ function initCocktailCarousels(): void {
   ids.forEach((id, i) => {
     const el = document.getElementById(id)
     if (!el) return
-    const carousel: HTMLElement = el
 
-    const children = Array.from(carousel.children)
+    const children = Array.from(el.children)
+    if (children.length === 0) return
+
+    const track = document.createElement('div')
+    track.className = 'flex gap-4'
+    track.style.willChange = 'transform'
+
+    const itemGap = 16
+    const itemWidth = children[0].getBoundingClientRect().width
+    const step = itemWidth + itemGap
+    const total = step * children.length
+
     children.forEach(child => {
-      const clone = child.cloneNode(true) as HTMLElement
-      carousel.appendChild(clone)
+      track.appendChild(child)
+      track.appendChild(child.cloneNode(true))
     })
+
+    el.textContent = ''
+    el.appendChild(track)
+    el.style.overflow = 'hidden'
 
     const dir = directions[i]
     const speed = 0.4
     let isPaused = false
     let pauseTimeout: number | null = null
+    let pos = dir === -1 ? total : 0
 
-    carousel.scrollLeft = dir === -1 ? carousel.scrollWidth / 2 : 0
+    track.style.transform = `translateX(${-pos}px)`
 
     const pause = () => {
       isPaused = true
@@ -182,19 +197,19 @@ function initCocktailCarousels(): void {
       }, 300)
     }
 
-    carousel.addEventListener('touchstart', pause, { passive: true })
-    carousel.addEventListener('touchend', resume, { passive: true })
-    carousel.addEventListener('touchcancel', resume, { passive: true })
+    el.addEventListener('touchstart', pause, { passive: true })
+    el.addEventListener('touchend', resume, { passive: true })
+    el.addEventListener('touchcancel', resume, { passive: true })
 
     function tick() {
       if (!isPaused) {
-        carousel.scrollLeft += speed * dir
-        const half = carousel.scrollWidth / 2
-        if (dir === 1 && carousel.scrollLeft >= half) {
-          carousel.scrollLeft = 0
-        } else if (dir === -1 && carousel.scrollLeft <= 0) {
-          carousel.scrollLeft = half
+        pos += speed * dir
+        if (dir === 1 && pos >= total) {
+          pos = 0
+        } else if (dir === -1 && pos <= 0) {
+          pos = total
         }
+        track.style.transform = `translateX(${-pos}px)`
       }
       requestAnimationFrame(tick)
     }
