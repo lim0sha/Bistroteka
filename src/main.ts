@@ -21,9 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initMerchFlip(): void {
   const cards = document.querySelectorAll('.merch-card')
-  cards.forEach(card => {
+  cards.forEach(c => {
+    const card = c as HTMLElement
+    card.setAttribute('tabindex', '0')
+    card.setAttribute('role', 'button')
     card.addEventListener('click', () => {
       card.classList.toggle('flipped')
+    })
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        card.classList.toggle('flipped')
+      }
     })
   })
 }
@@ -162,9 +171,14 @@ function initCocktailCarousels(): void {
     track.style.userSelect = 'none'
 
     const itemGap = 16
-    const itemWidth = children[0].getBoundingClientRect().width
-    const step = itemWidth + itemGap
-    const total = step * children.length
+    const dims = { step: 0, total: 0, maxPos: 0 }
+    const updateDims = () => {
+      const w = children[0].getBoundingClientRect().width
+      dims.step = w + itemGap
+      dims.total = dims.step * children.length
+      dims.maxPos = dims.total * 2
+    }
+    updateDims()
 
     children.forEach(child => track.appendChild(child))
     children.forEach(child => track.appendChild(child.cloneNode(true)))
@@ -178,7 +192,7 @@ function initCocktailCarousels(): void {
     const speed = 0.4
     let isPaused = false
     let pauseTimeout: number | null = null
-    let pos = dir === -1 ? total : 0
+    let pos = dir === -1 ? dims.total : 0
     let isDragging = false
     let dragStartX = 0
     let dragStartPos = 0
@@ -200,8 +214,6 @@ function initCocktailCarousels(): void {
       }, 300)
     }
 
-    const maxPos = total * 2
-
     const onDragStart = (clientX: number) => {
       pause()
       isDragging = true
@@ -211,15 +223,15 @@ function initCocktailCarousels(): void {
 
     const onDragMove = (clientX: number) => {
       if (!isDragging) return
-      pos = Math.max(0, Math.min(maxPos, dragStartPos + (dragStartX - clientX)))
+      pos = Math.max(0, Math.min(dims.maxPos, dragStartPos + (dragStartX - clientX)))
       track.style.transform = `translateX(${-pos}px)`
     }
 
     const onDragEnd = () => {
       if (!isDragging) return
       isDragging = false
-      if (pos > total) {
-        pos -= total
+      if (pos > dims.total) {
+        pos -= dims.total
       } else if (pos < 0) {
         pos = 0
       }
@@ -233,17 +245,27 @@ function initCocktailCarousels(): void {
     el.addEventListener('touchcancel', onDragEnd, { passive: true })
 
     el.addEventListener('mousedown', e => onDragStart(e.clientX))
-    el.addEventListener('mousemove', e => { e.preventDefault(); onDragMove(e.clientX) })
+    el.addEventListener('mousemove', e => { if (isDragging) e.preventDefault(); onDragMove(e.clientX) })
     el.addEventListener('mouseup', onDragEnd)
     el.addEventListener('mouseleave', onDragEnd)
+
+    let resizeTimer: number | null = null
+    window.addEventListener('resize', () => {
+      if (resizeTimer) cancelAnimationFrame(resizeTimer)
+      resizeTimer = requestAnimationFrame(() => {
+        updateDims()
+        if (pos > dims.total) pos = dims.total
+        track.style.transform = `translateX(${-pos}px)`
+      })
+    })
 
     function tick() {
       if (!isPaused && !isDragging) {
         pos += speed * dir
-        if (dir === 1 && pos >= total) {
+        if (dir === 1 && pos >= dims.total) {
           pos = 0
         } else if (dir === -1 && pos <= 0) {
-          pos = total
+          pos = dims.total
         }
         track.style.transform = `translateX(${-pos}px)`
       }
