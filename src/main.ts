@@ -166,11 +166,9 @@ function initCocktailCarousels(): void {
     let pauseTimeout: number | null = null
 
     carousel.scrollLeft = dir === -1 ? carousel.scrollWidth / 2 : 0
-    carousel.style.overflowX = 'hidden'
 
     const pause = () => {
       isPaused = true
-      carousel.style.overflowX = ''
       if (pauseTimeout !== null) {
         clearTimeout(pauseTimeout)
         pauseTimeout = null
@@ -180,7 +178,6 @@ function initCocktailCarousels(): void {
     const resume = () => {
       pauseTimeout = window.setTimeout(() => {
         isPaused = false
-        carousel.style.overflowX = 'hidden'
         pauseTimeout = null
       }, 300)
     }
