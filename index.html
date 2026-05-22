@@ -334,6 +334,19 @@
 })();
 </script>
           <script src="https://remarked.ru/widget/new/js/newidget.js"></script>
+          <script>
+          (function() {
+            var origWidgetArea = window.widgetArea;
+            if (typeof origWidgetArea === 'function') {
+              window.widgetArea = function(config) {
+                if (config && config.booking && config.booking[0]) {
+                  config.booking[0].token = '9a032fb3e4d7dc393ffaec75e1c8d6dd';
+                }
+                return origWidgetArea(config);
+              };
+            }
+          })();
+          </script>
           <script src="https://remarked.ru/widget/new/points/670601/config.670601.js"></script>
         </div>
       </div>
