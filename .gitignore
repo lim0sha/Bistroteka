@@ -30,3 +30,5 @@ Thumbs.db
 # Temporary files
 *.tmp
 .cache/
+/docs/policy guide.txt
+/docs/offer.txt
