@@ -299,27 +299,40 @@
           <a href="#openReMarkedWidget" class="open__primary__widget inline-flex items-center justify-center px-4 py-3 bg-bistro-red hover:bg-bistro-red/80 text-bistro-text rounded-lg transition-all">Забронировать столик</a>
           <link rel="stylesheet" href="https://remarked.ru/widget/new/points/670601/670601.css">
           <script>
-            (function() {
-              var CRM_HOST = 'app.remarked.ru';
-              var origOpen = XMLHttpRequest.prototype.open;
-              var origSend = XMLHttpRequest.prototype.send;
-              XMLHttpRequest.prototype.open = function(method, url) {
-                this._isCrmReq = url && url.indexOf(CRM_HOST) !== -1;
-                return origOpen.apply(this, arguments);
-              };
-              XMLHttpRequest.prototype.send = function() {
-                var xhr = this;
-                if (xhr._isCrmReq) {
-                  xhr.addEventListener('readystatechange', function onPatch() {
-                    if (xhr.readyState === 4 && xhr.response && !xhr.response.slots) {
-                      xhr.response.slots = [];
-                    }
-                  });
-                }
-                return origSend.apply(this, arguments);
-              };
-            })();
-          </script>
+(function() {
+  var CRM_HOST = 'app.remarked.ru';
+  var origOpen = XMLHttpRequest.prototype.open;
+  var origSend = XMLHttpRequest.prototype.send;
+  var reqId = 0;
+  window.__crmToken = null;
+  XMLHttpRequest.prototype.open = function(method, url) {
+    this._isCrmReq = url && url.indexOf(CRM_HOST) !== -1;
+    return origOpen.apply(this, arguments);
+  };
+  XMLHttpRequest.prototype.send = function(body) {
+    var xhr = this;
+    if (xhr._isCrmReq) {
+      reqId++;
+      var id = reqId;
+      console.log('[CRM:'+id+'] REQUEST', body);
+      xhr.addEventListener('readystatechange', function onPatch() {
+        if (xhr.readyState === 4) {
+          console.log('[CRM:'+id+'] RESPONSE status='+xhr.status, xhr.response);
+          if (xhr.response && xhr.response.token) {
+            window.__crmToken = xhr.response.token;
+            console.log('[CRM:'+id+'] TOKEN=' + window.__crmToken);
+          }
+          if (xhr.response && !xhr.response.slots) {
+            console.warn('[CRM:'+id+'] PATCH: response has no .slots, keys:', Object.keys(xhr.response));
+            xhr.response.slots = [];
+          }
+        }
+      });
+    }
+    return origSend.apply(this, arguments);
+  };
+})();
+</script>
           <script src="https://remarked.ru/widget/new/js/newidget.js"></script>
           <script src="https://remarked.ru/widget/new/points/670601/config.670601.js"></script>
         </div>
